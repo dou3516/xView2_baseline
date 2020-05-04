@@ -1,4 +1,19 @@
-# xView 2 Challenge 
+# Updates
+
+## Update 2020-5-4: support 6 bands image and classified label for multi-class segmentation.
+0. prepare, split data
+  You can do this with [`split_into_disasters.py`](./utils/split_into_disasters.py). This will take the location of your `train` directory and ask for an output directory to place each disaster with the subfolders `image/` and `label/`.
+  Example call:
+ `$ python split_into_disasters.py --input ~/Downloads/train/ --output ~/Downloads/xBD/`
+1. Run `mask_polygons_class.py` to generate a classified mask file for the chipped images.
+   * Sample call: `python mask_polygons_class.py --input /path/to/xBD --single-file`
+   * Here border refers to shrinking polygons by X number of pixels. This is to help the model separate buildings when there are a lot of "overlapping" or closely placed polygons
+   * Run `python mask_polygons_class.py --help` for the full description of the options.
+2. Run `data_finalize_class.py` to setup the 6 bands image and classified labels.
+   * sample call: `data_finalize_class.py -i /path/to/xBD/ -x /path/to/xView2/change/`
+   * Run `data_finalize_class.py -h` for the full description of the options.
+
+# xView 2 Challenge
 
 xview2-baseline
 
